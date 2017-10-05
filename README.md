@@ -10,6 +10,10 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+For the connection with facebook you should configure: `/etc/hosts` and add:
+```
+127.0.0.1   lvh.me
+```
 
 * Database creation
 
