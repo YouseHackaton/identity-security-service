@@ -17,3 +17,16 @@
 /yarn-error.log
 
 .byebug_history
+
+config/database.yml
+*.swp
+.env
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# Ignore Mac File.
+.DS_Store
+
+# Uploads.
+/public/uploads/*
