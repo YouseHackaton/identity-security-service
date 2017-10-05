@@ -13,6 +13,11 @@ Things you may want to cover:
 
 * Database creation
 
+```
+$ bin/rake db:create
+$ bin/rake db:migrate
+```
+
 * Database initialization
 
 * How to run the test suite
