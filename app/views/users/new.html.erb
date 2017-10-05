@@ -1,0 +1,20 @@
+<%= form_for @user do |f| %>
+
+  <%= render 'shared/form_errors', model: @user %>
+
+  <div>
+    <%= f.label :profile_pic %>
+    <%= f.file_field :profile_pic %>
+  </div>
+  <div>
+    <%= f.label :id_front_side %>
+    <%= f.file_field :id_front_side %>
+  </div>
+  <div>
+    <%= f.label :id_back_side %>
+    <%= f.file_field :id_back_side %>
+  </div>
+
+
+  <%= f.submit 'Guardar' %>
+<% end %>
