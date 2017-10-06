@@ -8,6 +8,8 @@ class User < ApplicationRecord
   mount_uploader :document_front_side, PictureUploader
   mount_uploader :document_back_side, PictureUploader
 
+  has_many :request_logs
+
   validates :selfie, guard: {
     safe_search: true,
     face_detection: true,

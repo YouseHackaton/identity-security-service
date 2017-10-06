@@ -59,7 +59,7 @@ class ImagesValidator
     { valid?: true, data: { names: names, surnames: surnames, number: number } }
   end
 
-  def wecognized_face? selfie:
+  def recognized_face? selfie:
     image = @vision.image selfie
     web = image.web
     descriptions = web.entities.map { |ent| ent.description.downcase }
