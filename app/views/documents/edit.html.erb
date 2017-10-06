@@ -1,0 +1,24 @@
+<%= form_for @user, url: documents_path do |f| %>
+
+  <%= render 'shared/form_errors', model: @user %>
+
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :document_front_side, class: 'col-12 control-label no-padding' %>
+      <div class="col-12 no-padding">
+        <%= f.file_field :document_front_side, class: 'form-control' %>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :document_back_side, class: 'col-12 control-label no-padding' %>
+      <div class="col-12 no-padding">
+        <%= f.file_field :document_back_side, class: 'form-control' %>
+      </div>
+    </div>
+  </fieldset>
+
+  <%= f.submit 'Guardar' %>
+<% end %>
