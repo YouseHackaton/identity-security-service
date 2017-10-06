@@ -1,0 +1,15 @@
+<%= form_for @user, url: documents_path do |f| %>
+
+  <%= render 'shared/form_errors', model: @user %>
+
+  <div>
+    <%= f.label :document_front_side %>
+    <%= f.file_field :document_front_side %>
+  </div>
+  <div>
+    <%= f.label :document_back_side %>
+    <%= f.file_field :document_back_side %>
+  </div>
+
+  <%= f.submit 'Guardar' %>
+<% end %>
