@@ -16,7 +16,7 @@ class DocumentsController < ApplicationController
           { request_type: :document, request_content: document[:data] }
         )
         @user.complete_step(:document)
-        redirect_to :document_number, notice: "Es un documento valido."
+        redirect_to :document_number_documents, notice: "Es un documento valido."
       else
         flash[:warning] = "No es un documento valido."
         render :edit
