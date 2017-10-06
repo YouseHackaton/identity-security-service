@@ -19,6 +19,10 @@ class User < ApplicationRecord
   validates :selfie, :document_front_side, :document_back_side, presence: true, on: :update
   has_many :credentials, dependent: :destroy
 
+  def last_log(provider)
+    request_logs.where(request_type: provider).order(created_at: :desc).first
+  end
+
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
