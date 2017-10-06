@@ -8,19 +8,32 @@ class UsersController < ApplicationController
   def update
     if user.update_without_password(user_params)
       validator = ImagesValidator.new
-      publicly_exposed_person = validator.recognized_face? selfie: user.selfie.path
 
-      validation_for_continue = !publicly_exposed_person[:valid?]
+      is_a_face = validator.is_a_face? selfie: user.selfie.path
 
-      if validation_for_continue
-        user.request_logs.create(
-          { request_type: :picture, request_content: publicly_exposed_person[:data] },
-        )
+      if is_a_face[:valid?]
+        publicly_exposed_person = validator.recognized_face? selfie: user.selfie.path
+
+        if publicly_exposed_person[:valid?]
+          flash[:warning] = "¿Eres una persona publicamente expuesta?, por favor comunicate con nosotros."
+          render :edit
+        else
+          user.request_logs.create(
+            request_type: :picture, request_content: {
+              descriptions: publicly_exposed_person[:data],
+              faces: is_a_face[:data]
+
+            }
+          )
+          @user.complete_step(:selfie)
+          redirect_to :edit_documents, notice: "Muy buena selfie :)"
+        end
+      else
+        flash[:warning] = "No pudimos identificar un rostro en la imagen, por favor intenta de nuevo."
+        render :edit
       end
-
-      @user.complete_step(:selfie)
-      redirect_to :edit_documents, notice: "Validaciones #{validation_for_continue ? ';)' : ':('}"
     else
+      flash[:warning] = "Intenta nuevamente."
       render :edit
     end
   end

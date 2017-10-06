@@ -72,7 +72,7 @@
       <section class="row">
         <div class="col-sm-12">
         <% flash.each do |key, value| %>
-          <div class="alert bg-primary <%= key %>" role="alert"><%= value %> <a href="javascript:;" class="float-right close"><em class="fa fa-remove"></em></a></div>
+          <div class="alert bg-<%= key == 'warning' ? 'warning' : 'primary' %>" role="alert"><%= value %> <a href="javascript:;" class="float-right close"><em class="fa fa-remove"></em></a></div>
         <% end %>
 
 

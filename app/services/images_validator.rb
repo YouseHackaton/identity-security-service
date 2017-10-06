@@ -26,7 +26,7 @@ class ImagesValidator
     'actor',
     'model',
     'football',
-    'Image',
+    'image',
     'candidate',
     'politician',
     'singer',
@@ -60,8 +60,8 @@ class ImagesValidator
   end
 
   def recognized_face? selfie:
-    image = @vision.image selfie
-    web = image.web
+    @image ||= @vision.image selfie
+    web = @image.web
     descriptions = web.entities.map { |ent| ent.description.downcase }
     intersection_description = descriptions & DESCRIPTIONS_TO_COMPARE
 
@@ -71,9 +71,9 @@ class ImagesValidator
   end
 
   def is_a_face? selfie:
-    image = @vision.image selfie
+    @image ||= @vision.image selfie
 
-    faces = image.faces.map { |face| face.likelihood }
+    faces = @image.faces.map { |face| face.likelihood }
 
     return { valid?: true, data: faces } if faces.present?
 

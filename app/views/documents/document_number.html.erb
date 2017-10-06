@@ -1,0 +1,13 @@
+<%= form_tag document_number_documents_path, method: :put do |f| %>
+
+  <fieldset>
+    <div class="form-group">
+      <%= label_tag :document_number, 'Complete su número de documento', class: 'col-12 control-label no-padding' %>
+      <div class="col-12 no-padding">
+        <%= @document_number %><%= text_field_tag 'user[document_number]', nil, id: :document_number, class: 'form-control', maxlength: 3, style: 'width: 55px;display: initial;' %>
+      </div>
+    </div>
+  </fieldset>
+
+  <%= submit_tag 'Guardar', class: 'btn btn-md btn-primary' %>
+<% end %>

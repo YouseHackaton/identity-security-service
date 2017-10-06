@@ -5,26 +5,31 @@
 
     <ul class="nav nav-pills flex-column sidebar-nav">
         <% if current_user %>
-          <%= link_to root_path, class: "nav-link" do %>
-            <em class="fa fa-user"></em> Login
+          <%= link_to '#', class: "nav-link disabled" do %>
+            <em class="fa fa-facebook-square"></em> Login
           <% end %>
           <li class="nav-item">
-            <%= link_to linked_in_path, class: "nav-link #{'disabled' unless current_user.journey['facebook']}", readonly: true do %>
+            <%= link_to edit_users_path, class: "nav-link #{'disabled' unless current_user.journey['facebook']}" do %>
               <em class="fa fa-user"></em> Selfie
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to root_path, class: "nav-link #{'disabled' unless current_user.journey['selfie']}" do %>
-              <em class="fa fa-user"></em> Documento
+            <%= link_to edit_documents_path, class: "nav-link #{'disabled' unless current_user.journey['selfie']}" do %>
+              <em class="fa fa-picture-o"></em> Documento
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to root_path, class: "nav-link #{'disabled' unless current_user.journey['document']}" do %>
-              <em class="fa fa-user"></em> LinkedIn
+            <%= link_to document_number_documents_path, class: "nav-link #{'disabled' unless current_user.journey['document']}" do %>
+              <em class="fa fa-file-text"></em> Número de Documento
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to root_path, class: "nav-link #{'disabled' unless current_user.journey['linkedin']}" do %>
+            <%= link_to linked_in_path, class: "nav-link #{'disabled' unless current_user.journey['document_number']}" do %>
+              <em class="fa fa-linkedin-square"></em> LinkedIn
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to results_path, class: "nav-link #{'disabled' unless current_user.journey['linkedin']}" do %>
               <em class="fa fa-user"></em> Resultado
             <% end %>
           </li>
@@ -36,6 +41,7 @@
           </li>
         <% end %>
     </ul>
+
     <% if current_user %>
       <%= link_to destroy_user_session_path, method: :delete, class: 'logout-button' do  %>
         <em class="fa fa-power-off"></em> Signout
