@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def edit
-    @user = User.find(:id)
+    @user = current_user
   end
 
   def update
-    @user = User.find(:id)
+    @user = current_user
     if @user.update_attributes(user_params)
       redirect_to :new_user, notice: 'Validaciones Ok!'
     else
