@@ -4,14 +4,41 @@
     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><em class="fa fa-bars"></em></a>
 
     <ul class="nav nav-pills flex-column sidebar-nav">
-        <li class="nav-item"><a class="nav-link active" href="index.html"><em class="fa fa-dashboard"></em> Dashboard <span class="sr-only">(current)</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="widgets.html"><em class="fa fa-calendar-o"></em> Widgets</a></li>
-        <li class="nav-item"><a class="nav-link" href="charts.html"><em class="fa fa-bar-chart"></em> Charts</a></li>
-        <li class="nav-item"><a class="nav-link" href="elements.html"><em class="fa fa-hand-o-up"></em> UI Elements</a></li>
-        <li class="nav-item"><a class="nav-link" href="cards.html"><em class="fa fa-clone"></em> Cards</a></li>
+        <% if current_user %>
+          <%= link_to root_path, class: "nav-link" do %>
+            <em class="fa fa-user"></em> Login
+          <% end %>
+          <li class="nav-item">
+            <%= link_to linked_in_path, class: "nav-link #{'disabled' unless current_user.journey[:facebook]}", readonly: true do %>
+              <em class="fa fa-user"></em> Selfie
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link #{'disabled' unless current_user.journey[:selfie]}" do %>
+              <em class="fa fa-user"></em> Documento
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link #{'disabled' unless current_user.journey[:document]}" do %>
+              <em class="fa fa-user"></em> LinkedIn
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link #{'disabled' unless current_user.journey[:linkedin]}" do %>
+              <em class="fa fa-user"></em> Resultado
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link active" do %>
+              <em class="fa fa-user"></em> Login
+            <% end %>
+          </li>
+        <% end %>
     </ul>
-
-    <%= link_to destroy_user_session_path, method: :delete, class: 'logout-button' do  %>
+    <% if current_user %>
+      <%= link_to destroy_user_session_path, method: :delete, class: 'logout-button' do  %>
         <em class="fa fa-power-off"></em> Signout
+      <% end %>
     <% end %>
 </nav>

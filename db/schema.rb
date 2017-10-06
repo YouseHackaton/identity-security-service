@@ -48,13 +48,13 @@ ActiveRecord::Schema.define(version: 20171006114428) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "selfie"
+    t.string "document_front_side"
+    t.string "document_back_side"
     t.string "provider"
     t.string "uid"
     t.string "name"
     t.text "image"
-    t.string "selfie"
-    t.string "document_front_side"
-    t.string "document_back_side"
     t.jsonb "journey"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
