@@ -23,6 +23,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'picguard', '~> 1.1'
 gem 'google-cloud-vision'
 gem "koala"
+gem 'linkedin'
 
 
 group :development, :test do
