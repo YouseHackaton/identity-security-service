@@ -7,6 +7,10 @@ class FacebookEvaluator
   RELATIONS = [:posts, :tagged_places, :family, :feed, :albums]
   CONNECTION_SCORES = { posts: 10, tagged_places: 30, family: 30, albums: 20, feed: 10 }
   CONNECTION_LIMITS = { posts: 30, tagged_places: 10, family: 5, albums: 10, feed: 50 }
+  FINANCE_UNLIKED_PHRASES = [
+    "ESTOY BUSCANDO TRABAJO",
+    "PERDI MI EMPLEO"
+  ]
 
   def initialize(user)
     @user = user
@@ -25,6 +29,19 @@ class FacebookEvaluator
       messages.push "#{relation} score #{value} performance: #{(value / CONNECTION_LIMITS[relation].to_f)}"
       accum + ((value / CONNECTION_LIMITS[relation].to_f) * CONNECTION_SCORES[relation])
     end
+  end
+
+  def possible_finance_trouble?
+    posts = @graph.get_connections(:me, :posts, {limit: 50})
+    posts.select!{|post| post["message"]}
+    posts.inject([]) do |arr, post|
+      arr.push post["message"]
+    end.each do |message|
+      FINANCE_UNLIKED_PHRASES.each do |phrase|
+        return true if message.upcase =~ Regexp.new("/#{phrase}/")
+      end
+    end
+    false
   end
 
   def save
