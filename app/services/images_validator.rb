@@ -21,7 +21,7 @@ class ImagesValidator
   ]
 
   def initialize
-    @vision ||= Google::Cloud::Vision.new project: 'identity-security-service', keyfile: ENV["GOOGLE_CLOUD_PROJECT"]
+    @vision ||= Google::Cloud::Vision.new project: ENV['GOOGLE_CLOUD_NAME'], keyfile: ENV['GOOGLE_CLOUD_PROJECT']
   end
 
   def valid_document? document_front_side:, document_back_side:
