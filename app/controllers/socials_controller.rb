@@ -5,7 +5,8 @@ class SocialsController < ApplicationController
       credential.token = "#{request.env['omniauth.auth'].credentials.secret} #{request.env['omniauth.auth'].credentials.token}"
       credential.save
     end
-    @user.complete_step(:linkedin)
+    current_user.complete_step(:linkedin)
+    current_user.complete_step(:evaluation)
     redirect_to :results
   end
 end

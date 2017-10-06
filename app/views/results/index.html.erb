@@ -53,4 +53,18 @@
 <% end %>
 
 <br/>
-<h4>Porcentaje de fiabilidad de tu perfil de facebook</h4><%= @percentage_fb.round(2) %>%
+<h4>Porcentaje de fiabilidad de tu perfil de facebook</h4>
+<%= @percentage_fb.round(2) %>%
+<br/>
+<% if @percentage_fb.round(2) > 60 %>
+  Este perfil parece verdadero<em class="fa fa-check"></em></br>
+<% else %>
+  Este perfil parece no ser verdadero<em class="fa fa-close"></em></br>
+<% end %>
+<br/>
+<h4>Posible presion financera</h4>
+<% unless @pressure_finance %>
+  Sin riesgo aparente<em class="fa fa-check"></em></br>
+<% else %>
+  Con riesgo aparente<em class="fa fa-close"></em></br>
+<% end %>
