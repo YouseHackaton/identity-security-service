@@ -16,8 +16,8 @@ class FacebookEvaluator
   def calculate_score
     RELATIONS.inject(0) do |accum, relation|
       value = @graph.get_connections(:me, relation, { limit: CONNECTION_LIMITS[relation] }).count
-      messages.push "#{relation} score #{value}"
-      accum + ((value / CONNECTION_LIMITS[relation]) * CONNECTION_SCORES[relation])
+      messages.push "#{relation} score #{value} performance: #{(value / CONNECTION_LIMITS[relation].to_f)}"
+      accum + ((value / CONNECTION_LIMITS[relation].to_f) * CONNECTION_SCORES[relation])
     end
   end
 
