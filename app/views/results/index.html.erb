@@ -1,70 +1,52 @@
 <section class="row">
   <div class="col-sm-12">
     <section class="row">
-      <div class="col-md-4 mb-2">
-          <div class="card mb-3 text-center ">
-              <div class="card-block">
-                  <div class="easypiechart" id="easypiechart-1" data-percent="25"></div>
-
-                  <h5 class="mt-2 mb-1">Label 1</h5>
-
-                  <p class="mb-1">25%</p>
-              </div>
-          </div>
-      </div>
 
       <div class="col-md-4 mb-2">
           <div class="card mb-3 text-center ">
               <div class="card-block">
-                  <div class="easypiechart" id="easypiechart-2" data-percent="50"></div>
+                  <div class="easypiechart" id="easypiechart-2" data-percent="<%= @percentage_fb.round(2) %>"></div>
 
-                  <h5 class="mt-2 mb-1">Label 2</h5>
+                  <h5 class="mt-2 mb-1">Porcentaje de fiabilidad de tu perfil de facebook</h5>
 
-                  <p class="mb-1">50%</p>
+                  <p class="mb-1"><%= @percentage_fb.round(2) %>%</p>
+                  <br />  
+                  <% if @percentage_fb.round(2) > 60 %>
+                    Este perfil parece confiable <em class="fa fa-check text-success"></em></br>
+                  <% else %>
+                    Este perfil parece no ser confiable <em class="fa fa-close text-danger"></em></br>
+                  <% end %>
               </div>
           </div>
       </div>
 
-      <div class="col-md-4 mb-2">
-          <div class="card mb-3 text-center ">
-              <div class="card-block">
-                  <div class="easypiechart" id="easypiechart-3" data-percent="75"></div>
-
-                  <h5 class="mt-2 mb-1">Label 3</h5>
-
-                  <p class="mb-1">75%</p>
-              </div>
+      <div class="col-md-8 mb-2">
+        <div class="card mb-3 text-center ">
+          <div class="card-block">
+  
+            <h4>Este es el resultado de los pasos de validación</h4>
+            <% @steps.each do |name, value| %>
+              <label>
+                <%= name %>
+                <% if value %>
+                  <em class="fa fa-check text-success"></em></br>
+                <% else %>
+                  <em class="fa fa-close text-danger"></em></br>
+                <% end %>
+              </label>
+              </br>
+            <% end %>
+            
+            <br/>
+            <h4>Posible presion financera</h4>
+            <% if @pressure_finance %>
+              Con riesgo aparente <em class="fa fa-close text-danger"></em></br>
+            <% else %>
+              Sin riesgo aparente <em class="fa fa-check text-success"></em></br>
+            <% end %>
+            </div>
           </div>
-      </div>
+        </div>
     </div>
   </div>
 </div>
-<h2>Este es el resultado de los pasos de validación</h2>
-<% @steps.each do |name, value| %>
-  <label>
-    <%= name %>
-    <% if value %>
-      <em class="fa fa-check"></em></br>
-    <% else %>
-      <em class="fa fa-close"></em></br>
-    <% end %>
-  </label>
-  </br>
-<% end %>
-
-<br/>
-<h4>Porcentaje de fiabilidad de tu perfil de facebook</h4>
-<%= @percentage_fb.round(2) %>%
-<br/>
-<% if @percentage_fb.round(2) > 60 %>
-  Este perfil parece verdadero<em class="fa fa-check"></em></br>
-<% else %>
-  Este perfil parece no ser verdadero<em class="fa fa-close"></em></br>
-<% end %>
-<br/>
-<h4>Posible presion financera</h4>
-<% unless @pressure_finance %>
-  Sin riesgo aparente<em class="fa fa-check"></em></br>
-<% else %>
-  Con riesgo aparente<em class="fa fa-close"></em></br>
-<% end %>

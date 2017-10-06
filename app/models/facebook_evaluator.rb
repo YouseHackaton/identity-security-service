@@ -9,7 +9,9 @@ class FacebookEvaluator
   CONNECTION_LIMITS = { posts: 30, tagged_places: 10, family: 5, albums: 10, feed: 50 }
   FINANCE_UNLIKED_PHRASES = [
     "ESTOY BUSCANDO TRABAJO",
-    "PERDI MI EMPLEO"
+    "PERDI MI EMPLEO",
+    'BUSCANDO TRABAJO',
+    'BUSCO TRABAJO'
   ]
 
   def initialize(user)
@@ -33,14 +35,9 @@ class FacebookEvaluator
 
   def possible_finance_trouble?
     posts = @graph.get_connections(:me, :posts, {limit: 50})
-    posts.select!{|post| post["message"]}
-    posts.inject([]) do |arr, post|
-      arr.push post["message"]
-    end.each do |message|
-      FINANCE_UNLIKED_PHRASES.each do |phrase|
-        return true if message.upcase =~ Regexp.new("/#{phrase}/")
-      end
-    end
+    messages = posts.map{ |x| x["message"].upcase }
+    result = messages & FINANCE_UNLIKED_PHRASES
+    return true if result.size > 0
     false
   end
 
