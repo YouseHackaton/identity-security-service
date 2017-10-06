@@ -10,7 +10,7 @@ class LinkedinEvaluator
   end
 
   def get_profile_fields
-    client.profile(:fields => BASIC_PROFILE_FIELDS).as_json
+    client.profile(fields: BASIC_PROFILE_FIELDS).as_json
   end
 
 end
