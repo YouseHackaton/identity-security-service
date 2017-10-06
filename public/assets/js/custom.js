@@ -12,4 +12,8 @@ $(function(){
     var $this = $(this);
     $this.parents('.alert').first().remove();
   });
+  $('body').on('click', 'a.disabled', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+  });
 });
