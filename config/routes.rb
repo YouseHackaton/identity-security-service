@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   post '/users/auth/linkedin', to: 'users/omniauth_callbacks#passthru', as: 'user_linkedin_omniauth_authorize'
   get '/socials/linkedin', to: 'socials#linkedin', as: 'socials_linkedin'
+  get 'linked_in', to: 'linked_in#index'
 end
