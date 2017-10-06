@@ -1,9 +1,7 @@
 class CreateUser < ActiveRecord::Migration[5.1]
   def change
-    create_table :users do |t|
-      t.string :profile_pic, null: false
-      t.string :id_front_side, null: false
-      t.string :id_back_side, null: false
-    end
+    add_column :users, :selfie, :string, null: false
+    add_column :users, :document_front_side, :string, null: false
+    add_column :users, :document_back_side, :string, null: false
   end
 end
