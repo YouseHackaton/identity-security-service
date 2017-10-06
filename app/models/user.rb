@@ -6,6 +6,16 @@ class User < ApplicationRecord
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
+  mount_uploader :selfie, PictureUploader
+
+  validates :selfie, guard: {
+    safe_search: true,
+    face_detection: true,
+    tool: :carrierwave
+  }, on: :update
+
+  validates :selfie, :document_front_side, :document_back_side, presence: true, on: :update
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

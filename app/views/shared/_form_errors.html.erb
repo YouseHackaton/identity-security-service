@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+  <div>
+    <p>
+      <%= pluralize(model.errors.count, 'error') %> al guardar:<br><br>
+      <% model.errors.full_messages.each do |msg| %>
+        <%= msg %><br>
+      <% end %>
+    </p>
+  </div>
+<% end %>
