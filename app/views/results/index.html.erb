@@ -39,3 +39,18 @@
     </div>
   </div>
 </div>
+<h2>Este es el resultado de los pasos de validación</h2>
+<% @steps.each do |name, value| %>
+  <label>
+    <%= name %>
+    <% if value %>
+      <em class="fa fa-check"></em></br>
+    <% else %>
+      <em class="fa fa-close"></em></br>
+    <% end %>
+  </label>
+  </br>
+<% end %>
+
+<br/>
+<h4>Porcentaje de fiabilidad de tu perfil de facebook</h4><%= @percentage_fb.round(2) %>%
