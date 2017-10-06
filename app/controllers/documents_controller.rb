@@ -17,7 +17,8 @@ class DocumentsController < ApplicationController
         )
       end
 
-      redirect_to :edit_users, notice: "Validaciones #{validation_for_continue ? ';)' : ':('}"
+      @user.complete_step(:document)
+      redirect_to :linked_in, notice: "Validaciones #{validation_for_continue ? ';)' : ':('}"
     end
   end
 

@@ -18,6 +18,7 @@ class UsersController < ApplicationController
         )
       end
 
+      @user.complete_step(:selfie)
       redirect_to :edit_documents, notice: "Validaciones #{validation_for_continue ? ';)' : ':('}"
     else
       render :edit
