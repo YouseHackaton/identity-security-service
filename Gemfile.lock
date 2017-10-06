@@ -49,6 +49,9 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    carrierwave-imageoptimizer (1.4.0)
+      carrierwave (>= 0.8, < 2.0)
+      image_optimizer (~> 1.6)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -58,8 +61,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.2)
-    declarative (0.0.10)
-    declarative-option (0.1.0)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -73,18 +74,11 @@ GEM
       railties (>= 3.2, < 5.2)
     erubi (1.6.1)
     execjs (2.7.0)
-    faraday (0.13.1)
+    faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    google-api-client (0.14.5)
-      addressable (~> 2.5, >= 2.5.1)
-      googleauth (~> 0.5)
-      httpclient (>= 2.8.1, < 3.0)
-      mime-types (~> 3.0)
-      representable (~> 3.0)
-      retriable (>= 2.0, < 4.0)
     google-cloud-core (1.0.0)
       google-cloud-env (~> 1.0)
       googleauth (~> 0.5.1)
@@ -119,13 +113,22 @@ GEM
       googleapis-common-protos-types (~> 1.0.0)
       googleauth (~> 0.5.1)
     hashie (3.5.6)
-    httpclient (2.8.3)
     i18n (0.8.6)
+    image_optimizer (1.7.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    json (2.1.0)
     jwt (1.5.6)
+    koala (3.0.0)
+      addressable
+      faraday
+      json (>= 1.8)
     libv8 (3.16.14.19)
+    linkedin (1.1.0)
+      hashie (~> 3.0)
+      multi_json (~> 1.0)
+      oauth (~> 0.4)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -176,10 +179,6 @@ GEM
     orm_adapter (0.5.0)
     os (0.9.6)
     pg (0.21.0)
-    picguard (1.1.0)
-      activemodel
-      google-api-client
-      mini_magick
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
@@ -213,14 +212,9 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     ref (2.0.0)
-    representable (3.0.4)
-      declarative (< 0.1.0)
-      declarative-option (< 0.2.0)
-      uber (< 0.2.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    retriable (3.1.1)
     rly (0.2.3)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
@@ -281,7 +275,6 @@ GEM
     turbolinks-source (5.0.3)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uber (0.1.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
@@ -301,18 +294,20 @@ PLATFORMS
 DEPENDENCIES
   byebug
   carrierwave (~> 1.2, >= 1.2.1)
+  carrierwave-imageoptimizer
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
   google-cloud-vision
   jbuilder (~> 2.5)
+  koala
+  linkedin
   listen (>= 3.0.5, < 3.2)
   mini_magick (~> 4.8)
   omniauth
   omniauth-facebook
   omniauth-linkedin
   pg (~> 0.18)
-  picguard (~> 1.1)
   puma (~> 3.7)
   rails (~> 5.1.4)
   rspec-rails (~> 3.6)
