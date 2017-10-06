@@ -46,12 +46,29 @@ class ImagesValidator
     [names, surnames, doc_number]
   end
 
-  def test
-    front_image_path = '/Users/ali.camargo/Documents/image/20171005_140525.jpg'
-    back_image_path = '/Users/ali.camargo/Documents/image/20171005_140545.jpg'
+  def wecognized_face? picture:
+    image = @vision.image picture
 
-    if front_image_path && back_image_path
-      valid_document? document_front_side: front_image_path, document_back_side: back_image_path
+    web = image.web
+
+    web.entities.each do |entity|
+      puts entity.description
     end
+
+    web.full_matching_images.each do |image|
+      puts image.url
+    end
+  end
+
+  def test
+    # front_image_path = '/Users/ali.camargo/Documents/image/20171005_140525.jpg'
+    # back_image_path = '/Users/ali.camargo/Documents/image/20171005_140545.jpg'
+    #
+    # if front_image_path && back_image_path
+    #   valid_document? document_front_side: front_image_path, document_back_side: back_image_path
+    # end
+
+    image_path = '/Users/angela/Downloads/leo.jpeg'
+    wecognized_face? picture: image_path
   end
 end

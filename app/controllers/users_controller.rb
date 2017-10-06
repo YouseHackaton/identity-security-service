@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
+  def edit
+    @user = User.find(:id)
   end
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
+  def update
+    @user = User.find(:id)
+    if @user.update_attributes(user_params)
       redirect_to :new_user, notice: 'Validaciones Ok!'
     else
       render :new

@@ -6,13 +6,14 @@ class User < ApplicationRecord
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  mount_uploader :selfie, AvatarUploader
+  mount_uploader :selfie, PictureUploader
 
   validates :selfie, guard: {
     safe_search: true,
     face_detection: true,
     tool: :carrierwave
   }
+
   validates :selfie, :document_front_side, :document_back_side, presence: true
 
   def self.new_with_session(params, session)
