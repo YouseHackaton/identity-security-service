@@ -15,6 +15,16 @@ ActiveRecord::Schema.define(version: 20171006051854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "credentials", force: :cascade do |t|
+    t.string "provider"
+    t.string "token"
+    t.datetime "expires_at"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credentials_on_user_id"
+  end
+
   create_table "request_logs", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "request_type", null: false
@@ -38,16 +48,17 @@ ActiveRecord::Schema.define(version: 20171006051854) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "selfie"
-    t.string "document_front_side"
-    t.string "document_back_side"
     t.string "provider"
     t.string "uid"
     t.string "name"
     t.text "image"
+    t.string "selfie"
+    t.string "document_front_side"
+    t.string "document_back_side"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "credentials", "users"
   add_foreign_key "request_logs", "users"
 end
