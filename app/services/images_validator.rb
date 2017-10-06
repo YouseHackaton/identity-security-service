@@ -20,6 +20,19 @@ class ImagesValidator
     'REGISTRADOR NACIONAL'
   ]
 
+  DESCRIPTIONS_TO_COMPARE = [
+    'celebrity',
+    'supermodel',
+    'actor',
+    'model',
+    'football',
+    'Image',
+    'candidate',
+    'politician',
+    'singer',
+    'athelete'
+  ]
+
   def initialize
     @vision ||= Google::Cloud::Vision.new project: ENV['GOOGLE_CLOUD_NAME'], keyfile: ENV['GOOGLE_CLOUD_PROJECT']
   end
@@ -34,41 +47,26 @@ class ImagesValidator
     back_side_texts = back_text.to_s.split("\n")
 
     intersection_front = front_side_texts & FRONT_SIDE_TO_COMPARE
-    return false if intersection_front.size < 4
+    return { valid?: false } if intersection_front.size < 4
 
     intersection_back = back_side_texts & BACK_SIDE_TO_COMPARE
-    return false if intersection_back.size < 4
+    return { valid?: false } if intersection_back.size < 4
 
-    doc_number = front_side_texts[3].split(' ').last
+    number = front_side_texts[3].split(' ').last
     surnames = front_side_texts[4]
     names = front_side_texts[6]
 
-    [names, surnames, doc_number]
+    { valid?: true, data: { names: names, surnames: surnames, number: number } }
   end
 
-  def wecognized_face? picture:
-    image = @vision.image picture
-
+  def wecognized_face? selfie:
+    image = @vision.image selfie
     web = image.web
+    descriptions = web.entities.map { |ent| ent.description.downcase }
+    intersection_description = descriptions & DESCRIPTIONS_TO_COMPARE
 
-    web.entities.each do |entity|
-      puts entity.description
-    end
+    return { valid?: true, data: descriptions } if intersection_description.size >= 1
 
-    web.full_matching_images.each do |image|
-      puts image.url
-    end
-  end
-
-  def test
-    # front_image_path = '/Users/ali.camargo/Documents/image/20171005_140525.jpg'
-    # back_image_path = '/Users/ali.camargo/Documents/image/20171005_140545.jpg'
-    #
-    # if front_image_path && back_image_path
-    #   valid_document? document_front_side: front_image_path, document_back_side: back_image_path
-    # end
-
-    image_path = '/Users/angela/Downloads/leo.jpeg'
-    wecognized_face? picture: image_path
+    { valid?: false }
   end
 end

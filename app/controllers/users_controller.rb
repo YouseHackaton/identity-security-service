@@ -7,13 +7,15 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    byebug
-    if @user.update_attributes(user_params)
+
+    if @user.update_without_password(user_params)
       validator = ImagesValidator.new
+      document = validator.valid_document? document_front_side: @user.document_front_side.path, document_back_side: @user.document_back_side.path
+      publicly_exposed_person = validator.wecognized_face? selfie: @user.selfie.path
 
+      validation_for_continue = publicly_exposed_person[:valid?] && document[:valid?]
 
-      validator.valid_document? document_front_side: front_image_path, document_back_side: back_image_path
-      redirect_to :new_user, notice: 'Validaciones Ok!'
+      redirect_to :edit_users, notice: "Validaciones #{validation_for_continue ? ';)' : ':('}"
     else
       render :new
     end

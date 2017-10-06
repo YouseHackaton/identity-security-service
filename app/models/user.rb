@@ -1,10 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  devise :database_authenticatable, :recoverable, :rememberable,
+         :omniauthable, :trackable, :validatable, :omniauth_providers => [:facebook]
 
   mount_uploader :selfie, PictureUploader
   mount_uploader :document_front_side, PictureUploader
@@ -17,8 +15,6 @@ class User < ApplicationRecord
   }, on: :update
 
   validates :selfie, :document_front_side, :document_back_side, presence: true, on: :update
-
-  has_secure_password
 
   def self.new_with_session(params, session)
     super.tap do |user|
