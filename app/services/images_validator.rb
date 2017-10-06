@@ -69,4 +69,14 @@ class ImagesValidator
 
     { valid?: false }
   end
+
+  def is_a_face? selfie:
+    image = @vision.image selfie
+
+    faces = image.faces.map { |face| face.likelihood }
+
+    return { valid?: true, data: faces } if faces.present?
+
+    { valid?: false }
+  end
 end
