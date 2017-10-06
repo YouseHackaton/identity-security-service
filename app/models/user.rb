@@ -1,12 +1,14 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  devise :database_authenticatable, :recoverable, :rememberable,
+         :omniauthable, :trackable, :validatable, :omniauth_providers => [:facebook]
 
   mount_uploader :selfie, PictureUploader
+  mount_uploader :document_front_side, PictureUploader
+  mount_uploader :document_back_side, PictureUploader
+
+  has_many :request_logs
 
   validates :selfie, guard: {
     safe_search: true,
@@ -15,14 +17,6 @@ class User < ApplicationRecord
   }, on: :update
 
   validates :selfie, :document_front_side, :document_back_side, presence: true, on: :update
-
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
-      end
-    end
-  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
