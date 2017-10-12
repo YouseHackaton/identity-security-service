@@ -35,7 +35,7 @@ class FacebookEvaluator
 
   def possible_finance_trouble?
     posts = @graph.get_connections(:me, :posts, {limit: 50})
-    messages = posts.map{ |x| x["message"].upcase }
+    messages = posts.map{ |x| x["message"]&.upcase }
     result = messages & FINANCE_UNLIKED_PHRASES
     return true if result.size > 0
     false
