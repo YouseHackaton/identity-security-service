@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "identity-security-service",
+  "private_key_id": "542ef42d828807ee55a8055e85e9b1851390a33e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCj4k89t5nre2T4\ne8goTmtvfX+XmAkiltbw09FndSsaY+Y5myOV9tH9y2kBPbd2RUDeTNLHTsxbvNLH\nT4yZpz3bUYkoKxUJ/XIX6KMi4cB9eUp7H8dxxdCa3BwOmAbd1C/r7VTSX2An3LJo\nYkOAcq0/JbnkkTPw5WARlDo8GszYw0LebEUp3mLsyRIJQmXyk7jDW0x/tLW9WUNh\nvCkhVvLlWJJMIYTaX6Ga75rYeFUeO+O7lWVuCg5YfhE9PlEooL2Jp2D26Hh5ANsJ\n4GD9LrVofX/6Ot24XmXvu4sS5p6OfPC55yI7fB8Bv/5k3f+mb83Nd/24HPcfKQB2\nDZrRTwKzAgMBAAECggEAA9WU/7SpUpZzKP0nFF+r/n0ehxrKMUJQ38GU8f65IMea\n6K4gia8Eqr4fmXqALbGLxae2fBieihGY54uM6+tlycPWmayoXrDMrT0xfpdu5tX3\npXnQ3htADjTS0znrWd/6Xw1mdqWUnQTPh8cEx/SRk8X7hhrU7vCZls+zrRmowUmG\nn+NPE0aOO/F+X6GaQY5y2L+4hDwygt5/+sH6/K6WsOUBF/G4vcf6vEKP5kh7xjIY\nknQnrg4RhjTCvj7qdQtyK6XPLKe2FBpABHegnMFhaq2oI7iJx31CJ5GlE3Rmt9QO\nfvhET1nMsw1Lg9Rng0OhKW6mN2FPYIENkfLSpobYAQKBgQDfmZAY2vSnOs3WKQ2M\nvz8fBIN/J29g4XfltAEDA2XChjyaquvE0cVgQl3uhOnQp6oUFtrTMwsW7K1pcEme\nk4c5p3Az+oeAP0UotfFKuNkQ3jg7Kee37MAo1n9q22vDv/Gsv4xByHhbHGXIW44T\nekz3gVrdo0KrYWUVg/Gey76gMwKBgQC7oZZycZcdq8s1dHfC24FHEauDqy9HqILz\nD8v/mzr6JCs3zibxiSZpmSGsoWfin+KZ5yra4IwrsDg7jlkzCMLULJH5X9kqye3D\nddRqklwuUzfjFMZuXHl01dFje8v3fCkm+o/BWRAAFKhdBxl+QlFKi129knusDPE0\ny8FIX7GTgQKBgEiobdqly7pLsXdV/8EspCZAITrAZcDlg0BxLaL9B6QeWrMnt1VN\nlQWii0NmjVPwJ6Q/iPv4KjJY1kDc7A9LgTWK4zsAvec+qAqClNXjGyYQD9Wp2FI7\n7HVYvi7K/kmtpaqs07bMnc99etWQaqqJo1kJ/6zl0FRAYciMB4fCTT9hAoGASuDf\nk2h1cCfg/sIuERtcaipJElC8m5JKQAnr1WPzk2Pfw3OH4xhitf2gjK4VMUGxQs4Y\nMiUuizjWGB5kxpMWfWoUDzsLBaJ0Om7JiIZEN1CKmxrtXZmV9uRlnZgH/AoWujGA\nMR8D3aRg1E9DAzogCum3TTIqHK1FjVZLGkDmMwECgYB9uh9YfRlnuzKiqkd1ycfv\nsp4l4PgFrlFTZDlcIC/Cfebhp8qgrreTbw0tUM2/t62EcYMYzWDwdmFFv7iq77Le\n0HyhQHyCSwC466ql0ysXvBy5zv7heQk4goQ1MjlmPh5NCcmLDSTRsPzUmEe4cplg\ns/qSSanNgPtULmgC62J+uw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "identify-images@identity-security-service.iam.gserviceaccount.com",
+  "client_id": "113926813882729127265",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/identify-images%40identity-security-service.iam.gserviceaccount.com"
+}
